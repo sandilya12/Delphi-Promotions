@@ -7,30 +7,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Employee {
 
+
 	@Id
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "employee_Sequencer")
-    @SequenceGenerator(name = "employee_Sequencer", sequenceName = "Employee_SEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "employee_employee_seq")
+    @SequenceGenerator(name = "employee_employee_seq", sequenceName = "employee_employee_seq", allocationSize=1)
     private long employeeId;
 	
     @Column(name = "phoneNo")
 	private Long phoneNo;	
 	
-    @Column(name = "Email")
+    @Column(name = "email")
 	private String Email;
 	
     @Column(name = "salaryGrade")
 	private String salaryGrade	;
 	
-    @Column(name = "employee_role")
-	private String employee_role	;
+    @Column(name = "employeerole")
+	private String employeeRole	;
 	
     @Column(name = "chargeOutRate")
 	private String chargeOutRate	;
 	
-    @Column(name = "Manager")
+    @Column(name = "manager")
 	private long Manager	;
 	
 	public long getEmployeeId() {
@@ -57,11 +61,11 @@ public class Employee {
 	public void setSalaryGrade(String salaryGrade) {
 		this.salaryGrade = salaryGrade;
 	}
-	public String getRole() {
-		return employee_role;
+	public String getEmployeeRole() {
+		return employeeRole;
 	}
-	public void setRole(String role) {
-		this.employee_role = role;
+	public void setEmployeeRole(String employeeRole) {
+		this.employeeRole = employeeRole;
 	}
 	public String getChargeOutRate() {
 		return chargeOutRate;
@@ -87,13 +91,19 @@ public class Employee {
 		builder.append(", salaryGrade=");
 		builder.append(salaryGrade);
 		builder.append(", role=");
-		builder.append(employee_role);
+		builder.append(employeeRole);
 		builder.append(", chargeOutRate=");
 		builder.append(chargeOutRate);
 		builder.append(", Manager=");
 		builder.append(Manager);
 		builder.append("]");
 		return builder.toString();
+	}
+	
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
 	}
 	
 }

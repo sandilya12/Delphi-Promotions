@@ -13,6 +13,7 @@ import javax.persistence.SequenceGenerator;
 @Entity
 public class Client {
 	
+
 	@Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator = "client_clinetId_seq")
     @SequenceGenerator(name = "client_clinetId_seq", sequenceName = "client_clinetId_seq", allocationSize=1)
